@@ -18,3 +18,5 @@ SOURCES += main.cpp\
 HEADERS  += MA_MainWindow.h
 
 FORMS    += MA_MainWindow.ui
+
+TRANSLATIONS += translation/myAssistant_zh.ts
