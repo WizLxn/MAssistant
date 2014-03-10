@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     a.setQuitOnLastWindowClosed(false);
 
     MA_MainWindow w;
-    MA_TrayIcon m(w, &a);
+    MA_TrayIcon m(w);
     m.show();
 
     return a.exec();

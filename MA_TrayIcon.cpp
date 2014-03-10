@@ -2,13 +2,15 @@
 #include <QApplication>
 #include <QIcon>
 #include <QDebug>
+#include <QDir>
 
 MA_TrayIcon::MA_TrayIcon(MA_MainWindow& window, QObject *parent) :
     QSystemTrayIcon(parent),m_mainWindow(window)
 {
-    setIcon(QIcon(":\rss.png"));
+    setIcon(QIcon(":/rss.png"));
     createContextMenu();
-    qDebug()<<QSystemTrayIcon::isSystemTrayAvailable();
+    setToolTip("MyTrayIcon");
+    qDebug()<<QDir::currentPath();
 }
 
 void MA_TrayIcon::showMainWindow()
@@ -19,7 +21,7 @@ void MA_TrayIcon::showMainWindow()
 void MA_TrayIcon::createContextMenu()
 {
     QAction* action = m_menu.addAction(tr("Quit"));
-    action->setIcon(QIcon(":\exit.png"));
+    action->setIcon(QIcon(":/exit.png"));
     connect(action, SIGNAL(triggered()), qApp, SLOT(quit()));
 
     action = m_menu.addAction(tr("MainWindow"));
