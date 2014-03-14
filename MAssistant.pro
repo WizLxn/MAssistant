@@ -13,13 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MA_MainWindow.cpp \
-    MA_TrayIcon.cpp
+    maTrayIcon.cpp \
+    maMainWindow.cpp \
+    maMAssistant.cpp
 
-HEADERS  += MA_MainWindow.h \
-    MA_TrayIcon.h
+HEADERS  += \
+    maMainWindow.h \
+    maTrayIcon.h \
+    maMAssistant.h
 
-FORMS    += MA_MainWindow.ui
+FORMS    += \
+    maMainWindow.ui
 
 TRANSLATIONS += translation/myAssistant_zh.ts
 

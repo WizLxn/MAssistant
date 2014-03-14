@@ -1,5 +1,5 @@
-#include "MA_TrayIcon.h"
-#include "MA_MainWindow.h"
+#include "maTrayIcon.h"
+#include "maMainWindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -7,9 +7,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName(QObject::tr("MAssistant"));
     a.setQuitOnLastWindowClosed(false);
+    a.setWindowIcon(QIcon(":/rss.png"));
 
-    MA_MainWindow w;
-    MA_TrayIcon m(w);
+    CMainWindow w;
+    CTrayIcon m(w);
     m.show();
 
     return a.exec();

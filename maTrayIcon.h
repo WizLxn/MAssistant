@@ -3,24 +3,27 @@
 
 #include <QSystemTrayIcon>
 #include <QMenu>
-#include "MA_MainWindow.h"
 
-class MA_TrayIcon : public QSystemTrayIcon
+
+class CMainWindow;
+class CTrayIcon : public QSystemTrayIcon
 {
     Q_OBJECT
 public:
-    explicit MA_TrayIcon(MA_MainWindow& window, QObject *parent = 0);
+    explicit CTrayIcon(CMainWindow& window, QObject *parent = 0);
 
 signals:
 
 public slots:
     void showMainWindow();
+    void on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason reasion);
+
 private:
     void createContextMenu();
 
 private:
     QMenu m_menu;
-    MA_MainWindow& m_mainWindow;
+    CMainWindow& m_mainWindow;
 };
 
 #endif // MW_TRAYICON_H
