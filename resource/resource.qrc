@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>exit.png</file>
         <file>rss.png</file>
+        <file>dragon.png</file>
     </qresource>
 </RCC>

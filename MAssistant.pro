@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
     maTrayIcon.cpp \
     maMainWindow.cpp \
-    maMAssistant.cpp
+    maMAssistant.cpp \
+    maWindowStyle.cpp
 
 HEADERS  += \
     maMainWindow.h \
     maTrayIcon.h \
-    maMAssistant.h
+    maMAssistant.h \
+    maWindowStyle.h
 
 FORMS    += \
     maMainWindow.ui

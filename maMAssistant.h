@@ -16,8 +16,8 @@ signals:
 public slots:
 
 private:
-    CTrayIcon& m_trayIcon;
-    CMainwindow& m_mainWindow;
+//    CTrayIcon& m_trayIcon;
+//    CMainwindow& m_mainWindow;
 };
 
 #endif // MAMASSISTANT_H

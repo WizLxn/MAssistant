@@ -15,6 +15,9 @@ public:
     explicit CMainWindow(QWidget *parent = 0);
     ~CMainWindow();
 
+protected:
+    void paintEvent(QPaintEvent *event);
+
 private:
     Ui::MA_MainWindow *ui;
 };
