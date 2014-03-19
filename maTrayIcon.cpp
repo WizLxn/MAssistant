@@ -15,6 +15,10 @@ CTrayIcon::CTrayIcon(CMainWindow& window, QObject *parent) :
     connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason)));
 }
 
+CTrayIcon::~CTrayIcon()
+{
+}
+
 void CTrayIcon::showMainWindow()
 {
     m_mainWindow.show();
@@ -33,6 +37,11 @@ void CTrayIcon::on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason reasion)
     default:
         break;
     }
+}
+
+void CTrayIcon::on_message_remind(QString msg)
+{
+    showMessage(tr("Info"), msg, QSystemTrayIcon::Information, 5000);
 }
 
 void CTrayIcon::createContextMenu()

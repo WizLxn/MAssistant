@@ -15,15 +15,25 @@ TEMPLATE = app
 SOURCES += main.cpp\
     maTrayIcon.cpp \
     maMainWindow.cpp \
-    maMAssistant.cpp
+    maMAssistant.cpp \
+    maTimedReminder.cpp \
+    InfoEditor/CInfoEditor.cpp \
+    InfoEditor/CInfoEditorView.cpp \
+    InfoEditor/CInfoEditorItem.cpp
 
 HEADERS  += \
     maMainWindow.h \
     maTrayIcon.h \
-    maMAssistant.h
+    maMAssistant.h \
+    maTimedReminder.h \
+    InfoEditor/CInfoEditor.h \
+    InfoEditor/CInfoEditorView.h \
+    InfoEditor/CInfoEditorItem.h \
+    InfoEditor/SEditorItemInfo.h
 
 FORMS    += \
-    maMainWindow.ui
+    maMainWindow.ui \
+    InfoEditor/CInfoEditor.ui
 
 TRANSLATIONS += translation/myAssistant_zh.ts
 

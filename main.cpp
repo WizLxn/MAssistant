@@ -1,6 +1,7 @@
 #include "maTrayIcon.h"
 #include "maMainWindow.h"
 #include <QApplication>
+#include "InfoEditor/CInfoEditor.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,9 +10,12 @@ int main(int argc, char *argv[])
     a.setQuitOnLastWindowClosed(false);
     a.setWindowIcon(QIcon(":/rss.png"));
 
-    CMainWindow w;
-    CTrayIcon m(w);
-    m.show();
+//    CMainWindow w;
+//    CTrayIcon m(w);
+//    m.show();
+
+    CInfoEditor editor;
+    editor.show();
 
     return a.exec();
 }
