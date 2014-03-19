@@ -8,7 +8,7 @@
 CTrayIcon::CTrayIcon(CMainWindow& window, QObject *parent) :
     QSystemTrayIcon(parent),m_mainWindow(window)
 {
-    setIcon(QIcon(":/rss.png"));
+    setIcon(QIcon(":/dragon.png"));
     createContextMenu();
     setToolTip("MyTrayIcon");
     qDebug()<<QDir::currentPath();

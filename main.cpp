@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName(QObject::tr("MAssistant"));
     a.setQuitOnLastWindowClosed(false);
-    a.setWindowIcon(QIcon(":/rss.png"));
+    a.setWindowIcon(QIcon(":/dragon.png"));
 
 //    CMainWindow w;
 //    CTrayIcon m(w);

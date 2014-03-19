@@ -18,9 +18,11 @@ signals:
 public slots:
 
 private:
+
     CTrayIcon& m_trayIcon;
     CMainwindow& m_mainWindow;
     QList<CTimedReminder*> m_timedReminders;
+
 };
 
 #endif // MAMASSISTANT_H

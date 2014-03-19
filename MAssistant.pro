@@ -15,6 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
     maTrayIcon.cpp \
     maMainWindow.cpp \
+    maWindowStyle.cpp \
     maMAssistant.cpp \
     maTimedReminder.cpp \
     InfoEditor/CInfoEditor.cpp \
@@ -25,6 +26,7 @@ HEADERS  += \
     maMainWindow.h \
     maTrayIcon.h \
     maMAssistant.h \
+    maWindowStyle.h \
     maTimedReminder.h \
     InfoEditor/CInfoEditor.h \
     InfoEditor/CInfoEditorView.h \
