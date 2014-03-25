@@ -14,22 +14,22 @@ void CNewsViewStyle::drawControl(QStyle::ControlElement element, const QStyleOpt
     {
         const QStyleOptionViewItemV4 *vopt = qstyleoption_cast<const QStyleOptionViewItemV4 *>(option);
 
-        if (!vopt->index.parent().isValid())
-        {
-            // draw root item
-            painter->save();
-//            QRect rcd(vopt->rect);
-//            rcd.setWidth(painter->window().width());
-//            painter->setBrush(QBrush(Qt::gray));
-//            painter->setPen(Qt::NoPen);
-//            painter->drawRect(rcd);
-            painter->setBrush(Qt::NoBrush);
-            painter->setPen(QPen(Qt::white));
-            QString strText = vopt->index.data().toString();
-            painter->drawText(vopt->rect, Qt::AlignCenter, strText);
-            painter->restore();
-        }
-        else
+//        if (!vopt->index.parent().isValid())
+//        {
+//            // draw root item
+//            painter->save();
+////            QRect rcd(vopt->rect);
+////            rcd.setWidth(painter->window().width());
+////            painter->setBrush(QBrush(Qt::gray));
+////            painter->setPen(Qt::NoPen);
+////            painter->drawRect(rcd);
+//            painter->setBrush(Qt::NoBrush);
+//            painter->setPen(QPen(Qt::white));
+//            QString strText = vopt->index.data().toString();
+//            painter->drawText(vopt->rect, Qt::AlignCenter, strText);
+//            painter->restore();
+//        }
+//        else
         {
             //draw normal Item
             painter->save();
@@ -43,7 +43,11 @@ void CNewsViewStyle::drawControl(QStyle::ControlElement element, const QStyleOpt
                 painter->setFont(font);
                 painter->setPen(QPen(Qt::white));
                 QString strText = vopt->index.data().toString();
-                painter->drawText(vopt->rect, Qt::AlignVCenter | Qt::AlignLeft, strText);
+                if (!vopt->index.parent().isValid())  {
+                    painter->drawText(vopt->rect, Qt::AlignCenter, strText);
+                } else {
+                    painter->drawText(vopt->rect, Qt::AlignVCenter | Qt::AlignLeft, strText);
+                }
             }
             else
             {
@@ -53,7 +57,11 @@ void CNewsViewStyle::drawControl(QStyle::ControlElement element, const QStyleOpt
                 painter->setFont(font);
                 painter->setPen(QPen(Qt::black));
                 QString strText = vopt->index.data().toString();
-                painter->drawText(vopt->rect, Qt::AlignVCenter | Qt::AlignLeft, strText);
+                if (!vopt->index.parent().isValid())  {
+                    painter->drawText(vopt->rect, Qt::AlignCenter, strText);
+                } else {
+                    painter->drawText(vopt->rect, Qt::AlignVCenter | Qt::AlignLeft, strText);
+                }
             }
             painter->restore();
         }
