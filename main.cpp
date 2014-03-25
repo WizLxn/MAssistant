@@ -10,12 +10,12 @@ int main(int argc, char *argv[])
     a.setQuitOnLastWindowClosed(false);
     a.setWindowIcon(QIcon(":/dragon.png"));
 
-//    CMainWindow w;
-//    CTrayIcon m(w);
-//    m.show();
+    CMainWindow w;
+    CTrayIcon m(w);
+    m.show();
 
-    CInfoEditor editor;
-    editor.show();
+//    CInfoEditor editor;
+//    editor.show();
 
     return a.exec();
 }
