@@ -5,14 +5,17 @@
 #include <QList>
 
 class CTrayIcon;
-class CMainwindow;
+class CMainWindow;
 class CTimedReminder;
 class CMAssistant : public QObject
 {
     Q_OBJECT
 public:
-    explicit CMAssistant(CTrayIcon& traIcon, CMainwindow& window, QObject *parent = 0);
+    explicit CMAssistant(CTrayIcon& traIcon, CMainWindow& window, QObject *parent = 0);
     ~CMAssistant();
+
+    void showTrayIcon();
+    void showMainWindow();
 signals:
 
 public slots:
@@ -20,7 +23,7 @@ public slots:
 private:
 
     CTrayIcon& m_trayIcon;
-    CMainwindow& m_mainWindow;
+    CMainWindow& m_mainWindow;
     QList<CTimedReminder*> m_timedReminders;
 
 };

@@ -1,18 +1,19 @@
 #include "maTimedReminder.h"
 
 CTimedReminder::CTimedReminder(QObject *parent) :
-    QThread(parent),
+    QTimer(parent),
     m_nCyclesNum(0),
     m_nSecondInterval(0),
     m_strReminder(tr("-Nothing-"))
 {
+    connect(this, SIGNAL(timeout()), SLOT(on_timeOut()));
 }
 int CTimedReminder::nInterval() const
 {
     return m_nSecondInterval;
 }
 
-void CTimedReminder::setNInterval(int nInterval)
+void CTimedReminder::setInterval(int nInterval)
 {
     m_nSecondInterval = nInterval;
 }
@@ -35,14 +36,25 @@ void CTimedReminder::setStrReminder(const QString &strReminder)
     m_strReminder = strReminder;
 }
 
-void CTimedReminder::run()
+void CTimedReminder::startReminder(int nInterval, int nCycle, const QString &strRminder)
 {
-    while (m_nCyclesNum > 0) {
-        sleep(m_nSecondInterval);
-        emit timeToRemid(m_strReminder);
-        m_nCyclesNum--;
+    m_nSecondInterval = nInterval;
+    m_nCyclesNum = nCycle;
+    m_strReminder = strRminder;
+    start(m_nSecondInterval * 1000);
+}
+
+void CTimedReminder::on_timeOut()
+{
+    emit timeToRemid(m_strReminder);
+
+    m_nCyclesNum--;
+    if (m_nCyclesNum <= 0) {
+        stop();
     }
 }
+
+
 
 
 

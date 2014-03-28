@@ -7,6 +7,7 @@ namespace Ui {
 class CNewsListWidget;
 }
 
+class CWebSiteListModel;
 class CNewsListWidget : public QWidget
 {
     Q_OBJECT
@@ -29,6 +30,7 @@ private slots:
     void on_newsLoadFinished(QString webSite, QStringList newsList);
 private:
     Ui::CNewsListWidget *ui;
+    CWebSiteListModel* m_webSiteModel;
 };
 
 #endif // CNEWSLISTWIDGET_H

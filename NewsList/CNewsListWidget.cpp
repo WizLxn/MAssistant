@@ -3,6 +3,7 @@
 #include "CWebSiteItemDelegate.h"
 #include "CNewsViewStyle.h"
 #include "CWebNewsLoader.h"
+#include "CWebSiteListModel.h"
 #include <QTreeWidgetItem>
 #include <QStringList>
 
@@ -11,14 +12,9 @@ CNewsListWidget::CNewsListWidget(QWidget *parent) :
     ui(new Ui::CNewsListWidget)
 {
     ui->setupUi(this);
-//    CWebSiteItemDelegate* webItemDelegate = new CWebSiteItemDelegate(this);
-//    ui->listView_webSite->setItemDelegate(webItemDelegate);
 
     CNewsViewStyle* newsStyle = new CNewsViewStyle;
     ui->treeWidget->setStyle(newsStyle);
-    //m_newsItemsModel = new QAbstractTableModel(this);
-    //ui->treeView->setModel(m_newsItemsModel);
-
 
     // basic features
     ui->treeWidget->header()->hide();
@@ -40,7 +36,18 @@ CNewsListWidget::CNewsListWidget(QWidget *parent) :
     childItem->setData(0, Qt::DisplayRole, "Child Item two");
     topLevelItem->addChild(childItem);
 
-    ui->listWidget->addItem("http://www.guokr.com/");
+
+    CWebSiteItemDelegate* webItemDelegate = new CWebSiteItemDelegate(this);
+    ui->listView->setItemDelegate(webItemDelegate);
+    m_webSiteModel = new CWebSiteListModel(ui->listView);
+    ui->listView->setModel(m_webSiteModel);
+    SWebSite goukr;
+    goukr.enable = true;
+    goukr.strUrl = "http://www.guokr.com/";
+    m_webSiteModel->addWebSite(goukr);
+    goukr.enable = true;
+    goukr.strUrl = "http://www.36kr.com/";
+    m_webSiteModel->addWebSite(goukr);
 }
 
 CNewsListWidget::~CNewsListWidget()
@@ -50,9 +57,17 @@ CNewsListWidget::~CNewsListWidget()
 
 void CNewsListWidget::on_Btn_update_clicked()
 {
-    for (int i = 0; i < ui->listWidget->count(); i++)
+    for (int i = 0; i < m_webSiteModel->rowCount(); i++)
     {
-        QString webSite = ui->listWidget->item(i)->text();
+        QModelIndex index = m_webSiteModel->index(i, 0);
+        bool bEnable = m_webSiteModel->data(index, WebUseableRole).toBool();
+        if (!bEnable)
+            continue;
+
+        QString webSite = m_webSiteModel->data(index, WebSiteRole).toString();
+        if (webSite.isEmpty())
+            continue;
+
         CWebNewsLoader* newLoader = new CWebNewsLoader;
         connect(newLoader, SIGNAL(newsLoadFinished(QString,QStringList)), SLOT(on_newsLoadFinished(QString,QStringList)));
         newLoader->loadWebPageNews(webSite);

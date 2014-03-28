@@ -1,7 +1,8 @@
 #include "maTrayIcon.h"
 #include "maMainWindow.h"
-#include <QApplication>
+#include "maMAssistant.h"
 #include "InfoEditor/CInfoEditor.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +13,10 @@ int main(int argc, char *argv[])
 
     CMainWindow w;
     CTrayIcon m(w);
-    m.show();
+    CMAssistant assist(m, w);
+
+    assist.showTrayIcon();
+//    m.show();
 
 //    CInfoEditor editor;
 //    editor.show();
