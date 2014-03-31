@@ -11,13 +11,14 @@ class CWebNewsLoader : public QObject
 public:
     explicit CWebNewsLoader(QObject *parent = 0);
 
-    void loadWebPageNews(const QString& webSite);
+    void loadWebPageNewsList(const QString& webSite);
+    void loadRssNewsList(const QString& webSite);
 
 public slots:
     void on_webPageLoadFinished(bool res);
 
 signals:
-    void newsLoadFinished(QString webSite, QStringList newsList);
+    void newsListLoadFinished(QString webSite, QStringList newsList);
 
 private:
     QWebView* m_webView;

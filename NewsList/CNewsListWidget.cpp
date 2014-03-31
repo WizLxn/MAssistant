@@ -37,8 +37,8 @@ CNewsListWidget::CNewsListWidget(QWidget *parent) :
     topLevelItem->addChild(childItem);
 
 
-    CWebSiteItemDelegate* webItemDelegate = new CWebSiteItemDelegate(this);
-    ui->listView->setItemDelegate(webItemDelegate);
+//    CWebSiteItemDelegate* webItemDelegate = new CWebSiteItemDelegate(this);
+//    ui->listView->setItemDelegate(webItemDelegate);
     m_webSiteModel = new CWebSiteListModel(ui->listView);
     ui->listView->setModel(m_webSiteModel);
     SWebSite goukr;
@@ -59,18 +59,16 @@ void CNewsListWidget::on_Btn_update_clicked()
 {
     for (int i = 0; i < m_webSiteModel->rowCount(); i++)
     {
-        QModelIndex index = m_webSiteModel->index(i, 0);
-        bool bEnable = m_webSiteModel->data(index, WebUseableRole).toBool();
-        if (!bEnable)
+        SWebSite webSite;
+        if (!m_webSiteModel->getWebSite(webSite, i))
             continue;
 
-        QString webSite = m_webSiteModel->data(index, WebSiteRole).toString();
-        if (webSite.isEmpty())
+        if (!webSite.enable || webSite.strUrl.isEmpty())
             continue;
 
         CWebNewsLoader* newLoader = new CWebNewsLoader;
-        connect(newLoader, SIGNAL(newsLoadFinished(QString,QStringList)), SLOT(on_newsLoadFinished(QString,QStringList)));
-        newLoader->loadWebPageNews(webSite);
+        connect(newLoader, SIGNAL(newsListLoadFinished(QString,QStringList)), SLOT(on_newsLoadFinished(QString,QStringList)));
+        newLoader->loadWebPageNewsList(webSite.strUrl);
     }
 }
 

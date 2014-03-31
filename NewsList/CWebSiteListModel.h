@@ -1,7 +1,7 @@
 #ifndef CWEBSITELISTMODEL_H
 #define CWEBSITELISTMODEL_H
 
-#include <QAbstractListModel>
+#include <QStandardItemModel>
 
 struct SWebSite
 {
@@ -14,7 +14,7 @@ enum webRole{
     WebSiteRole
 };
 
-class CWebSiteListModel : public QAbstractListModel
+class CWebSiteListModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
@@ -22,12 +22,11 @@ public:
 
     void addWebSite(const SWebSite &site);
 
-    int rowCount(const QModelIndex & parent = QModelIndex()) const;
+    bool getWebSite(SWebSite& site, int row) const;
 
-    QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+    //QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
 private:
-    QList<SWebSite> m_sites;
 
 
 };
