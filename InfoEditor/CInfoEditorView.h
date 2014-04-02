@@ -9,9 +9,13 @@ class CInfoEditorView : public QGraphicsView
 public:
     explicit CInfoEditorView(QWidget *parent = 0);
 
+    //void appendItem()
 signals:
 
 public slots:
+
+protected:
+    void mouseDoubleClickEvent(QMouseEvent *event);
 
 private:
     bool initScene();

@@ -1,11 +1,20 @@
 #include "CInfoEditorView.h"
-#include <QGraphicsScene>
 #include "CInfoEditorItem.h"
+#include <QGraphicsScene>
+#include <QMouseEvent>
 
 CInfoEditorView::CInfoEditorView(QWidget *parent) :
     QGraphicsView(parent)
 {
     initScene();
+}
+
+void CInfoEditorView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+//    for (int i = 0; i < items.count(); i++)
+//    {
+//        items.at(i)->boundingRect().contains(event);
+//    }
 }
 
 bool CInfoEditorView::initScene()

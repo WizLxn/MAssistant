@@ -2,8 +2,10 @@
 #include <QFont>
 #include <QFontMetrics>
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
 
-CInfoEditorItem::CInfoEditorItem()
+CInfoEditorItem::CInfoEditorItem(QGraphicsItem* parent) : QGraphicsObject(parent),
+    m_mousePressed(false)
 {
 }
 
@@ -39,4 +41,28 @@ void CInfoEditorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     painter->setPen(pen);
     rcBound.adjust(m_info.nTextMargin, m_info.nTextMargin, -m_info.nTextMargin, -m_info.nTextMargin);
     painter->drawText(rcBound, Qt::AlignCenter | Qt::TextWordWrap, m_info.strContext);
+}
+
+void CInfoEditorItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    m_mousePoint = event->pos();
+    m_mousePressed = true;
+}
+
+void CInfoEditorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_mousePressed)
+    {
+        QPointF curMousePos = event->pos();
+        QPointF curItemPos = pos();
+        setPos(curItemPos.x() + curMousePos.x() - m_mousePoint.x(),
+               curItemPos.y() + curMousePos.y() - m_mousePoint.y());
+        //m_mousePoint = curMousePos;
+    }
+}
+
+void CInfoEditorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    m_mousePressed = false;
+    m_mousePoint = QPointF(0, 0);
 }

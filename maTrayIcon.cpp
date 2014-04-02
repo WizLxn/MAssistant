@@ -5,11 +5,13 @@
 #include <QDir>
 #include "maMainWindow.h"
 #include "NewsList/CNewsListWidget.h"
+#include "InfoEditor/CInfoEditor.h"
 
 CTrayIcon::CTrayIcon(CMainWindow& window, QObject *parent) :
     QSystemTrayIcon(parent),
     m_mainWindow(window),
-    m_newsListWidget(0)
+    m_newsListWidget(0),
+    m_infoEditor(0)
 {
     setIcon(QIcon(":/dragon.png"));
     createContextMenu();
@@ -24,6 +26,11 @@ CTrayIcon::~CTrayIcon()
     {
         m_newsListWidget->deleteLater();
         m_newsListWidget = 0;
+    }
+    if (m_infoEditor)
+    {
+        m_infoEditor->deleteLater();
+        m_infoEditor = 0;
     }
 }
 
@@ -40,6 +47,15 @@ void CTrayIcon::showNewsListWidget()
         m_newsListWidget = new CNewsListWidget;
     }
     m_newsListWidget->show();
+}
+
+void CTrayIcon::showInfoEditor()
+{
+    if (!m_infoEditor)
+    {
+        m_infoEditor = new CInfoEditor;
+    }
+    m_infoEditor->show();
 }
 
 void CTrayIcon::on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason reasion)
@@ -74,7 +90,7 @@ void CTrayIcon::createContextMenu()
     connect(action, SIGNAL(triggered()), this, SLOT(showNewsListWidget()));
 
     action = m_menu.addAction(tr("InfoEditor"));
-    connect(action, SIGNAL(triggered()), this, SLOT(showMainWindow()));
+    connect(action, SIGNAL(triggered()), this, SLOT(showInfoEditor()));
 
     setContextMenu(&m_menu);
 }

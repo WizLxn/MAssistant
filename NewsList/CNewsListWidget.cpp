@@ -94,6 +94,8 @@ void CNewsListWidget::on_Btn_OK_clicked()
 
 void CNewsListWidget::on_newsLoadFinished(QString webSite, QStringList newsList)
 {
+    QObject* sender = QObject::sender();
+    sender->deleteLater();
     QTreeWidgetItem* topLevelItem = new QTreeWidgetItem();
     topLevelItem->setData(0, Qt::DisplayRole, webSite);
     ui->treeWidget->addTopLevelItem(topLevelItem);
