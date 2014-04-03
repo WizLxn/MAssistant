@@ -11,16 +11,6 @@ CInfoEditorItem::CInfoEditorItem(QGraphicsItem* parent) : QGraphicsObject(parent
 
 QRectF CInfoEditorItem::boundingRect() const
 {
-//    QPainter painter;
-//    QFont font(m_info.strFontName);
-//    QPen pen;
-//    pen.setWidth(m_info.nFontSize);
-//    painter.setFont(font);
-//    painter.setPen(pen);
-//    QRect rcBound(0, 0, 0, 0);
-//    painter.drawText(0, 0, 0, 0, Qt::AlignCenter, m_info.strContext, &rcBound);
-//    rcBound.adjust(-m_info.nTextMargin, -m_info.nTextMargin, m_info.nTextMargin, m_info.nTextMargin);
-
     return QRect(-m_boudSize.width()/2, -m_boudSize.height()/2, m_boudSize.width(), m_boudSize.height());
 }
 
@@ -35,12 +25,39 @@ void CInfoEditorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     pen.setWidth(0);
     painter->setPen(pen);
     QRectF rcBound = boundingRect();
+    if (m_itemSelected)
+    {
+        pen.setWidth(2);
+        pen.setColor(Qt::blue);
+        painter->setPen(pen);
+    }
     painter->drawRect(rcBound);
 
     pen.setWidth(m_info.nFontSize);
+    pen.setColor(m_info.clFontColor);
     painter->setPen(pen);
     rcBound.adjust(m_info.nTextMargin, m_info.nTextMargin, -m_info.nTextMargin, -m_info.nTextMargin);
     painter->drawText(rcBound, Qt::AlignCenter | Qt::TextWordWrap, m_info.strContext);
+}
+
+QString CInfoEditorItem::getItemContentText()
+{
+    return m_info.strContext;
+}
+
+QString CInfoEditorItem::getItemTitle()
+{
+    return m_info.strTitle;
+}
+
+void CInfoEditorItem::setItemContextText(const QString &strText)
+{
+    m_info.strContext = strText;
+}
+
+void CInfoEditorItem::setItemTitle(const QString &strTitle)
+{
+    m_info.strTitle = strTitle;
 }
 
 void CInfoEditorItem::mousePressEvent(QGraphicsSceneMouseEvent *event)

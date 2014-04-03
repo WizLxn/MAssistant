@@ -9,12 +9,53 @@ CInfoEditorView::CInfoEditorView(QWidget *parent) :
     initScene();
 }
 
+CInfoEditorItem* CInfoEditorView::findItemAt(const QPoint& point)
+{
+    CInfoEditorItem* item = dynamic_cast<CInfoEditorItem*>(itemAt(point));
+    return item;
+}
+
+CInfoEditorItem *CInfoEditorView::findItemAt(int index)
+{
+    if (index <0 || index >= items().count())
+        return 0;
+
+    CInfoEditorItem* item = dynamic_cast<CInfoEditorItem*>(items().at(index));
+    return item;
+}
+
+void CInfoEditorView::mousePressEvent(QMouseEvent *event)
+{
+    for (int i = 0; i < items().count(); i++)
+    {
+        CInfoEditorItem* item = findItemAt(i);
+        if (item)
+        {
+            item->m_itemSelected = false;
+        }
+    }
+
+    CInfoEditorItem* item = findItemAt(event->pos());
+    if (item)
+    {
+        item->m_itemSelected = true;
+    }
+
+    QGraphicsView::mousePressEvent(event);
+    scene()->update(scene()->sceneRect());
+}
+
 void CInfoEditorView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-//    for (int i = 0; i < items.count(); i++)
-//    {
-//        items.at(i)->boundingRect().contains(event);
-//    }
+    CInfoEditorItem* item = findItemAt(event->pos());
+    if (item)
+    {
+        QString strText = item->getItemContentText();
+        QString strTitle = item->getItemTitle();
+        emit showItemText(strTitle, strText);
+    }
+
+    QGraphicsView::mouseDoubleClickEvent(event);
 }
 
 bool CInfoEditorView::initScene()

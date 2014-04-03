@@ -12,6 +12,12 @@ public:
     virtual QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 
+    //
+    QString getItemContentText();
+    QString getItemTitle();
+    void setItemContextText(const QString& strText);
+    void setItemTitle(const QString& strTitle);
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
@@ -22,6 +28,7 @@ public:
     QSize m_boudSize;
     QPointF m_mousePoint;
     bool m_mousePressed;
+    bool m_itemSelected;
 };
 
 #endif // CINFOEDITORITEM_H
