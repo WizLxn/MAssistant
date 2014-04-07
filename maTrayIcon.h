@@ -4,6 +4,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 
+class KFMain;
 class CInfoEditor;
 class CMainWindow;
 class CNewsListWidget;
@@ -19,6 +20,8 @@ public slots:
     void showMainWindow();
     void showNewsListWidget();
     void showInfoEditor();
+    void showKFMainWindow();
+    void on_KFMainWindowClosed();
     void on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason reasion);
     void on_message_remind(QString msg);
 
@@ -30,6 +33,7 @@ private:
     CMainWindow& m_mainWindow;
     CNewsListWidget* m_newsListWidget;
     CInfoEditor* m_infoEditor;
+    KFMain* m_kfMain;
 };
 
 #endif // MW_TRAYICON_H

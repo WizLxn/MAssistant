@@ -30,7 +30,19 @@ SOURCES += main.cpp\
     NewsList/CNewsListItem.cpp \
     NewsList/CGetWebPageNews.cpp \
     NewsList/CWebNewsLoader.cpp \
-    NewsList/CWebSiteListModel.cpp
+    NewsList/CWebSiteListModel.cpp \
+    KindomFight/KingdomFightWindow.cpp \
+    KindomFight/KFWorldRunner.cpp \
+    KindomFight/KFGraphicsView.cpp \
+    KindomFight/KFBaseScene.cpp \
+    KindomFight/KFBaseItem.cpp \
+    KindomFight/CountryScene/KFCitySurveyScene.cpp \
+    KindomFight/Sprite/Sprite.cpp \
+    KindomFight/Building/Building.cpp \
+    KindomFight/Building/City.cpp \
+    KindomFight/DataBase/KFDataBase.cpp \
+    KindomFight/KFMain.cpp \
+    KindomFight/KFDate.cpp
 
 HEADERS  += \
     maMainWindow.h \
@@ -48,12 +60,25 @@ HEADERS  += \
     NewsList/CNewsListItem.h \
     NewsList/CGetWebPageNews.h \
     NewsList/CWebNewsLoader.h \
-    NewsList/CWebSiteListModel.h
+    NewsList/CWebSiteListModel.h \
+    KindomFight/KingdomFightWindow.h \
+    KindomFight/KFWorldRunner.h \
+    KindomFight/KFGraphicsView.h \
+    KindomFight/KFBaseScene.h \
+    KindomFight/KFBaseItem.h \
+    KindomFight/CountryScene/KFCitySurveyScene.h \
+    KindomFight/Sprite/Sprite.h \
+    KindomFight/Building/Building.h \
+    KindomFight/Building/City.h \
+    KindomFight/DataBase/KFDataBase.h \
+    KindomFight/KFMain.h \
+    KindomFight/KFDate.h
 
 FORMS    += \
     maMainWindow.ui \
     InfoEditor/CInfoEditor.ui \
-    NewsList/CNewsListWidget.ui
+    NewsList/CNewsListWidget.ui \
+    KindomFight/KingdomFightWindow.ui
 
 TRANSLATIONS += translation/myAssistant_zh.ts
 

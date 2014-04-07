@@ -6,12 +6,14 @@
 #include "maMainWindow.h"
 #include "NewsList/CNewsListWidget.h"
 #include "InfoEditor/CInfoEditor.h"
+#include "KindomFight/KFMain.h"
 
 CTrayIcon::CTrayIcon(CMainWindow& window, QObject *parent) :
     QSystemTrayIcon(parent),
     m_mainWindow(window),
     m_newsListWidget(0),
-    m_infoEditor(0)
+    m_infoEditor(0),
+    m_kfMain(0)
 {
     setIcon(QIcon(":/dragon.png"));
     createContextMenu();
@@ -31,6 +33,12 @@ CTrayIcon::~CTrayIcon()
     {
         m_infoEditor->deleteLater();
         m_infoEditor = 0;
+    }
+    if (m_kfMain)
+    {
+        m_kfMain->closeMainWindow();
+        m_kfMain->deleteLater();
+        m_kfMain = 0;
     }
 }
 
@@ -56,6 +64,22 @@ void CTrayIcon::showInfoEditor()
         m_infoEditor = new CInfoEditor;
     }
     m_infoEditor->show();
+}
+
+void CTrayIcon::showKFMainWindow()
+{
+    if (!m_kfMain)
+    {
+        m_kfMain = new KFMain;
+        connect(m_kfMain, SIGNAL(mainWindowClosed()), SLOT(on_KFMainWindowClosed()));
+    }
+    m_kfMain->showKFMainWindow();
+}
+
+void CTrayIcon::on_KFMainWindowClosed()
+{
+    m_kfMain->deleteLater();
+    m_kfMain = 0;
 }
 
 void CTrayIcon::on_tryaIcon_clicked(QSystemTrayIcon::ActivationReason reasion)
@@ -91,6 +115,9 @@ void CTrayIcon::createContextMenu()
 
     action = m_menu.addAction(tr("InfoEditor"));
     connect(action, SIGNAL(triggered()), this, SLOT(showInfoEditor()));
+
+    action = m_menu.addAction(tr("KingdomFight"));
+    connect(action, SIGNAL(triggered()), this, SLOT(showKFMainWindow()));
 
     setContextMenu(&m_menu);
 }
