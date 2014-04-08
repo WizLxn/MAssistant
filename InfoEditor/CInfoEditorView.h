@@ -14,7 +14,7 @@ public:
     CInfoEditorItem* findItemAt(const QPoint& point);
     CInfoEditorItem* findItemAt(int index);
 signals:
-    void showItemText(QString strText);
+    void showItemText(QString strTitle, QString strText);
 public slots:
 
 protected:

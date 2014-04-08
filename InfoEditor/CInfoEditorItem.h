@@ -18,6 +18,9 @@ public:
     void setItemContextText(const QString& strText);
     void setItemTitle(const QString& strTitle);
 
+    //
+    bool isPointInBorder(const QPointF& point);
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

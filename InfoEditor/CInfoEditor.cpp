@@ -21,7 +21,7 @@ void CInfoEditor::displayItemInfo(QString strTitle, QString strText)
 {
     ui->lineEdit->setText(strTitle);
     ui->plainTextEdit->clear();
-    ui->plainTextEdit->setText(strText);
+    ui->plainTextEdit->setPlainText(strText);
 }
 
 void CInfoEditor::initToolBar()
