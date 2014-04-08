@@ -68,8 +68,8 @@ bool CInfoEditorView::initScene()
     for (int i = 0; i < 3; ++i) {
         CInfoEditorItem *mouse = new CInfoEditorItem();
         mouse->setPos(i * 50, i * 30);
-        mouse->m_info.strTitle = "strTitle";
-        mouse->m_info.strContext = "Starting /Users/lxn/Program/build-MAssistant-Desktop";
+        mouse->m_info.strTitle = "strTitle " + QString::number(i);
+        mouse->m_info.strContext = "Starting MAssistant-Desktop";
         mouse->m_info.strFontName = "arial";
         mouse->m_info.nFontSize = 5;
         mouse->m_info.nTextMargin = 3;
