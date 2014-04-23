@@ -1,0 +1,1 @@
+lupdate ./*.cpp ./*.h ./*.ui ./NewsList/*.h ./NewsList/*.cpp ./NewsList/*.ui ./InfoEditor/*.h ./InfoEditor/*.cpp ./InfoEditor/*.ui ./KindomFight/*.h ./KindomFight/*.cpp ./KindomFight/*.ui -ts ./translation/myAssistant_zh.ts -no-obsolete -recursive

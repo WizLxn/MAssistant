@@ -64,8 +64,10 @@ void CInfoEditorItem::setItemTitle(const QString &strTitle)
 bool CInfoEditorItem::isPointInBorder(const QPointF &point)
 {
     int nMargin = 3;
-    QRectF innerRect = boundingRect().adjust(nMargin, nMargin, -nMargin, -nMargin);
-    QRectF outerRect = boundingRect().adjust(-nMargin, -nMargin, nMargin, nMargin);
+    QRectF innerRect = boundingRect();
+    innerRect.adjust(nMargin, nMargin, -nMargin, -nMargin);
+    QRectF outerRect = boundingRect();
+    outerRect.adjust(-nMargin, -nMargin, nMargin, nMargin);
 
     return (!innerRect.contains(point)) && outerRect.contains(point);
 }
@@ -83,20 +85,20 @@ void CInfoEditorItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 //        this->setCursor(Qt::ArrowCursor);
 //    }
 
-    if (m_mousePressed)
-    {
-        // mouse point in border
-        if ()
-        {
-        }
-        else
-        {
-            QPointF curMousePos = event->pos();
-            QPointF curItemPos = pos();
-            setPos(curItemPos.x() + curMousePos.x() - m_mousePoint.x(),
-                   curItemPos.y() + curMousePos.y() - m_mousePoint.y());
-        }
-    }
+//    if (m_mousePressed)
+//    {
+//        // mouse point in border
+//        if ()
+//        {
+//        }
+//        else
+//        {
+//            QPointF curMousePos = event->pos();
+//            QPointF curItemPos = pos();
+//            setPos(curItemPos.x() + curMousePos.x() - m_mousePoint.x(),
+//                   curItemPos.y() + curMousePos.y() - m_mousePoint.y());
+//        }
+//    }
 }
 
 void CInfoEditorItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

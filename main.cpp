@@ -3,6 +3,7 @@
 #include "maMAssistant.h"
 #include "InfoEditor/CInfoEditor.h"
 #include <QApplication>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,11 @@ int main(int argc, char *argv[])
     a.setApplicationName(QObject::tr("MAssistant"));
     a.setQuitOnLastWindowClosed(false);
     a.setWindowIcon(QIcon(":/dragon.png"));
+
+    QTranslator translator( 0 );
+    translator.load(":/myAssistant_zh.qm");
+    a.installTranslator(&translator);
+//     installTranslator( &translator );
 
     CMainWindow w;
     CTrayIcon m(w);

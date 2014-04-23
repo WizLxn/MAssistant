@@ -3,6 +3,7 @@
 
 #include <QGraphicsObject>
 #include "SEditorItemInfo.h"
+#include "IELine.h"
 
 class CInfoEditorItem : public QGraphicsObject
 {

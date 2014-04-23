@@ -42,7 +42,9 @@ SOURCES += main.cpp\
     KindomFight/Building/City.cpp \
     KindomFight/DataBase/KFDataBase.cpp \
     KindomFight/KFMain.cpp \
-    KindomFight/KFDate.cpp
+    KindomFight/KFDate.cpp \
+    InfoEditor/IELine.cpp \
+    MAMisc.cpp
 
 HEADERS  += \
     maMainWindow.h \
@@ -72,7 +74,9 @@ HEADERS  += \
     KindomFight/Building/City.h \
     KindomFight/DataBase/KFDataBase.h \
     KindomFight/KFMain.h \
-    KindomFight/KFDate.h
+    KindomFight/KFDate.h \
+    InfoEditor/IELine.h \
+    MAMisc.h
 
 FORMS    += \
     maMainWindow.ui \

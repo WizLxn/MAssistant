@@ -3,6 +3,8 @@
 #include "maMainWindow.h"
 #include "maTrayIcon.h"
 
+const QString thought = QObject::tr("Those who can show the idea in my mind, are emerging from the heart.");
+
 CMAssistant::CMAssistant(CTrayIcon& traIcon, CMainWindow& window, QObject* parent) :
     QObject(parent),
     m_trayIcon(traIcon),
@@ -11,7 +13,7 @@ CMAssistant::CMAssistant(CTrayIcon& traIcon, CMainWindow& window, QObject* paren
     CTimedReminder* reminder = new CTimedReminder(this);
     connect(reminder, SIGNAL(timeToRemid(QString)), &m_trayIcon, SLOT(on_message_remind(QString)));
     m_timedReminders.append(reminder);
-    reminder->startReminder(20 * 60, 20, tr("Have a rest!"));
+    reminder->startReminder(20 * 60, 20, thought);
 }
 
 CMAssistant::~CMAssistant()

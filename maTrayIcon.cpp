@@ -45,7 +45,6 @@ CTrayIcon::~CTrayIcon()
 void CTrayIcon::showMainWindow()
 {
     m_mainWindow.show();
-    showMessage(tr("hahaya"), tr("托盘测试"), QSystemTrayIcon::Information, 5000);
 }
 
 void CTrayIcon::showNewsListWidget()

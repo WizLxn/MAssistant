@@ -3,5 +3,6 @@
         <file>exit.png</file>
         <file>rss.png</file>
         <file>dragon.png</file>
+        <file>myAssistant_zh.qm</file>
     </qresource>
 </RCC>
